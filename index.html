@@ -31,10 +31,22 @@
           <option value="derivative">Derivatives</option>
           <option value="limit">Limits</option>
           <option value="integral">Definite integrals</option>
+          <option value="implicit">Implicit Differentiation</option>
+          <option value="related-rates">Related Rates</option>
+          <option value="optimization">Optimization</option>
           <option value="mixed">Mixed Bag</option>
         </select>
       </label>
-
+      <label>
+        Theme
+        <select id="themeSelect">
+        <option value="default">Default Blue</option>
+        <option value="sunset">Sunset</option>
+        <option value="forest">Forest</option>
+        <option value="midnight">Midnight</option>
+        <option value="paper">Paper</option>
+      </select>
+      </label>
       <label>
         Mode
         <select id="modeSelect">
@@ -53,7 +65,7 @@
       </label>
       <label>
         Count
-        <input id="count" type="number" value="10" min="1" max="50" />
+        <input id="count" type="number" value="10" min="1" max="" />
       </label>
 
       <label>
@@ -74,6 +86,8 @@
         <button id="exportCSV">Export CSV</button>
         <button id="exportJSON">Export JSON</button>
         <button id="printBtn">Print / PDF</button>
+        <button id="exportHTML" type="button">Export HTML</button>
+        <button id="loadJSONBtn" type="button">Load JSON</button>
       </div>
     </section>
 

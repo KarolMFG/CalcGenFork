@@ -3,7 +3,15 @@ import { loadTemplatePack } from './services/templateService.js';
 import { verifyBySampling, verifyWithRemoteMathJS } from './services/verify.js';
 import { buildProblemFromPack, buildProblemFromAST } from './templates.js';
 
-const MIXED_TOPICS = ['derivative', 'limit', 'integral', 'slope'];
+const MIXED_TOPICS = [
+  'derivative',
+  'limit',
+  'integral',
+  'slope',
+  'optimization',
+  'implicit',
+  'related-rates'
+];
 
 export async function generateProblems({
   topic,
@@ -33,7 +41,6 @@ export async function generateProblems({
     }
   }
 
-  // Preload packs only for topics we may actually need
   const packs = {};
   if (mode === 'pack') {
     const topicsToLoad = topic === 'mixed' ? MIXED_TOPICS : [topic];
@@ -42,24 +49,113 @@ export async function generateProblems({
     }
   }
 
-  const unlockedNeeded = Math.max(0, count - lockedBySlot.size);
-  const generatedFresh = [];
+  const plannedTopicsBySlot = topic === 'mixed'
+    ? buildBalancedMixedPlan(count, lockedBySlot, rng)
+    : Array(count).fill(topic);
+
+  const problems = new Array(count);
+  for (const [slot, p] of lockedBySlot.entries()) {
+    problems[slot] = {
+      ...p,
+      id: slot + 1,
+      slot,
+      locked: true
+    };
+  }
+
   let attempts = 0;
-  const maxAttempts = Math.max(count * 20, 50);
+  const maxAttempts = Math.max(count * 25, 80);
 
-  while (generatedFresh.length < unlockedNeeded && attempts < maxAttempts) {
-    attempts++;
+  for (let slot = 0; slot < count; slot++) {
+    if (problems[slot]) continue;
 
-    const actualTopic = topic === 'mixed'
-      ? pick(rng, MIXED_TOPICS)
-      : topic;
+    const actualTopic = plannedTopicsBySlot[slot];
+    const accepted = await generateOneValidProblem({
+      actualTopic,
+      mode,
+      difficulty,
+      rng,
+      useRemoteVerify,
+      pack: packs[actualTopic],
+      maxAttempts: maxAttempts - attempts
+    });
+
+    attempts += accepted.attemptsUsed;
+
+    problems[slot] = {
+      ...accepted.problem,
+      topic: actualTopic,
+      locked: false,
+      slot,
+      id: slot + 1
+    };
+  }
+
+  return { problems, meta };
+}
+
+export async function regenerateSingleProblem({
+  params,
+  slotIndex,
+  currentProblems
+}) {
+  const { topic, mode, difficulty, seed, useRemoteVerify } = params;
+
+  const derivedSeed = seed === undefined || seed === null || Number.isNaN(seed)
+    ? undefined
+    : Number(seed) + (slotIndex + 1) * 1009 + Date.now() % 997;
+
+  const rng = makeRng(derivedSeed);
+
+  const old = currentProblems[slotIndex];
+  const actualTopic = topic === 'mixed'
+    ? (old?.topic && MIXED_TOPICS.includes(old.topic) ? old.topic : pick(rng, MIXED_TOPICS))
+    : topic;
+
+  let pack = null;
+  if (mode === 'pack') {
+    pack = await loadTemplatePack(actualTopic);
+  }
+
+  const accepted = await generateOneValidProblem({
+    actualTopic,
+    mode,
+    difficulty,
+    rng,
+    useRemoteVerify,
+    pack,
+    maxAttempts: 30
+  });
+
+  return {
+    ...accepted.problem,
+    topic: actualTopic,
+    locked: false,
+    slot: slotIndex,
+    id: slotIndex + 1
+  };
+}
+
+async function generateOneValidProblem({
+  actualTopic,
+  mode,
+  difficulty,
+  rng,
+  useRemoteVerify,
+  pack,
+  maxAttempts
+}) {
+  let attemptsUsed = 0;
+
+  while (attemptsUsed < maxAttempts) {
+    attemptsUsed++;
 
     const p = mode === 'pack'
       ? buildProblemFromPack({
           topic: actualTopic,
           difficulty,
           rng,
-          pack: packs[actualTopic]
+          pack
         })
       : buildProblemFromAST({
           topic: actualTopic,
@@ -82,37 +178,84 @@ export async function generateProblems({
       }
     }
 
-    generatedFresh.push({
-      ...p,
-      topic: actualTopic,
-      locked: false
-    });
+    return {
+      problem: p,
+      attemptsUsed
+    };
   }
 
-  if (generatedFresh.length < unlockedNeeded) {
-    throw new Error(
-      `Could only generate ${generatedFresh.length}/${unlockedNeeded} unlocked problems (attempts=${attempts}). Try a different seed/difficulty/mode.`
-    );
-  }
+  throw new Error('Could not generate a valid problem.');
+}
 
-  const problems = [];
-  let freshIndex = 0;
+function buildBalancedMixedPlan(count, lockedBySlot, rng) {
+  const remainingSlots = [];
+  const lockedTopicCounts = Object.fromEntries(MIXED_TOPICS.map(t => [t, 0]));
 
   for (let slot = 0; slot < count; slot++) {
-    let p;
-
-    if (lockedBySlot.has(slot)) {
-      p = { ...lockedBySlot.get(slot) };
+    const locked = lockedBySlot.get(slot);
+    if (locked) {
+      if (MIXED_TOPICS.includes(locked.topic)) {
+        lockedTopicCounts[locked.topic]++;
+      }
     } else {
-      p = { ...generatedFresh[freshIndex++] };
+      remainingSlots.push(slot);
     }
-
-    p.slot = slot;
-    p.id = slot + 1;
-    problems.push(p);
   }
 
-  return { problems, meta };
+  const targetCounts = getBalancedTopicTargets(count);
+
+  for (const t of MIXED_TOPICS) {
+    targetCounts[t] = Math.max(0, targetCounts[t] - lockedTopicCounts[t]);
+  }
+
+  const pool = [];
+  for (const t of MIXED_TOPICS) {
+    for (let i = 0; i < targetCounts[t]; i++) {
+      pool.push(t);
+    }
+  }
+
+  while (pool.length < remainingSlots.length) {
+    pool.push(pick(rng, MIXED_TOPICS));
+  }
+
+  while (pool.length > remainingSlots.length) {
+    pool.pop();
+  }
+
+  shuffleInPlace(pool, rng);
+
+  const plannedTopicsBySlot = new Array(count).fill(null);
+
+  for (const [slot, locked] of lockedBySlot.entries()) {
+    plannedTopicsBySlot[slot] = locked.topic;
+  }
+
+  for (let i = 0; i < remainingSlots.length; i++) {
+    plannedTopicsBySlot[remainingSlots[i]] = pool[i];
+  }
+
+  return plannedTopicsBySlot;
+}
+
+function getBalancedTopicTargets(count) {
+  const base = Math.floor(count / MIXED_TOPICS.length);
+  const remainder = count % MIXED_TOPICS.length;
+
+  const counts = Object.fromEntries(MIXED_TOPICS.map(t => [t, base]));
+
+  for (let i = 0; i < remainder; i++) {
+    counts[MIXED_TOPICS[i]]++;
+  }
+
+  return counts;
+}
+
+function shuffleInPlace(arr, rng) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
 }
 
 function titleCase(s) {

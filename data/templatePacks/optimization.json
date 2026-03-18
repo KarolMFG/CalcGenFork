@@ -1,0 +1,8 @@
+{
+  "templates": [
+    { "name": "rectangle_area_max", "notes": "Max area of rectangle with fixed perimeter." },
+    { "name": "fixed_area_perimeter_min", "notes": "Min perimeter of rectangle with fixed area." },
+    { "name": "revenue_max", "notes": "Max revenue from linear demand model." },
+    { "name": "quadratic_critical_point", "notes": "Find and classify max/min from vertex-form quadratic." }
+  ]
+}

@@ -1,6 +1,10 @@
 :root{
-  --bg0:#b07a03;
-  --bg1:#744201;
+  --bg0:#000000;
+  --bg1:#01062add;
+  --bg2: rgba(255,120,220,0.20);
+  --bg3: rgba(70,255,200,0.16);
+  --bg4: rgba(255, 0, 0, 0.35);
+
   --ink:#e8f0ff;
   --muted:#9aa7c2;
   --line:rgba(140,170,255,0.18);
@@ -12,18 +16,200 @@
 
   --soft: rgba(255,255,255,0.03);
   --soft2: rgba(0,0,0,0.22);
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  --inputBg: rgba(0,0,0,0.25);
+  --cardBg: rgba(0,0,0,0.18);
+  --stepBg: rgba(90,120,255,0.06);
+  --stepBorder: rgba(90,120,255,0.22);
+  --answerBg: rgba(255,215,90,0.07);
+  --answerBorder: rgba(255,215,90,0.22);
+  --plotBg: rgba(0,0,0,0.25);
+  --chipBg: rgba(255,255,255,0.03);
+  --buttonBg: rgba(255,255,255,0.04);
+  --buttonHoverBg: rgba(255,255,255,0.06);
+  --buttonBorder: rgba(255,255,255,0.16);
+  --buttonHoverBorder: rgba(255,255,255,0.26);
+  --primaryBorder: rgba(70,255,200,0.35);
+  --primaryInset: rgba(70,255,200,0.15);
 
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+/* -------- Themes -------- */
+
+:root[data-theme="default"]{
+  --bg0:#000000;
+  --bg1:#01062add;
+  --bg2: rgba(255,120,220,0.20);
+  --bg3: rgba(70,255,200,0.16);
+  --bg4: rgba(255, 0, 0, 0.35);
+
+  --ink:#e8f0ff;
+  --muted:#9aa7c2;
+  --line:rgba(140,170,255,0.18);
+
+  --neonA:#46ffc8;
+  --neonB:#ff78dc;
+  --neonC:#5a78ff;
+  --warn:#ffd75a;
+
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  --inputBg: rgba(0,0,0,0.25);
+  --cardBg: rgba(0,0,0,0.18);
+  --stepBg: rgba(90,120,255,0.06);
+  --stepBorder: rgba(90,120,255,0.22);
+  --answerBg: rgba(255,215,90,0.07);
+  --answerBorder: rgba(255,215,90,0.22);
+  --plotBg: rgba(0,0,0,0.25);
+  --chipBg: rgba(255,255,255,0.03);
+  --buttonBg: rgba(255,255,255,0.04);
+  --buttonHoverBg: rgba(255,255,255,0.06);
+  --buttonBorder: rgba(255,255,255,0.16);
+  --buttonHoverBorder: rgba(255,255,255,0.26);
+  --primaryBorder: rgba(70,255,200,0.35);
+  --primaryInset: rgba(70,255,200,0.15);
+}
+
+:root[data-theme="sunset"]{
+  --bg0:#14070b;
+  --bg1:#3d1326;
+  --bg2: rgba(255,180,90,0.22);
+  --bg3: rgba(255,90,120,0.18);
+  --bg4: rgba(255,60,0,0.28);
+
+  --ink:#fff2ea;
+  --muted:#e0b9aa;
+  --line:rgba(255,170,120,0.18);
+
+  --neonA:#ff9a62;
+  --neonB:#ff78b0;
+  --neonC:#ffcc7a;
+  --warn:#ffe08a;
+
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+  --inputBg: rgba(20,0,0,0.26);
+  --cardBg: rgba(30,8,8,0.18);
+  --stepBg: rgba(255,160,100,0.08);
+  --stepBorder: rgba(255,170,120,0.22);
+  --answerBg: rgba(255,220,120,0.08);
+  --answerBorder: rgba(255,220,120,0.24);
+  --plotBg: rgba(25,5,8,0.26);
+  --chipBg: rgba(255,255,255,0.04);
+  --buttonBg: rgba(255,255,255,0.05);
+  --buttonHoverBg: rgba(255,255,255,0.08);
+  --buttonBorder: rgba(255,210,180,0.16);
+  --buttonHoverBorder: rgba(255,210,180,0.28);
+  --primaryBorder: rgba(255,154,98,0.42);
+  --primaryInset: rgba(255,154,98,0.16);
+}
+
+:root[data-theme="forest"]{
+  --bg0:#041008;
+  --bg1:#0a2418;
+  --bg2: rgba(110,220,150,0.18);
+  --bg3: rgba(90,180,255,0.10);
+  --bg4: rgba(20,120,50,0.25);
+
+  --ink:#ecfff1;
+  --muted:#b6d4bf;
+  --line:rgba(124,201,144,0.18);
+
+  --neonA:#7ad98a;
+  --neonB:#8dd8c6;
+  --neonC:#6fa9ff;
+  --warn:#ffe37b;
+
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.012));
+  --inputBg: rgba(0,20,0,0.24);
+  --cardBg: rgba(5,25,10,0.18);
+  --stepBg: rgba(80,180,110,0.08);
+  --stepBorder: rgba(124,201,144,0.22);
+  --answerBg: rgba(255,227,123,0.08);
+  --answerBorder: rgba(255,227,123,0.22);
+  --plotBg: rgba(0,20,5,0.26);
+  --chipBg: rgba(255,255,255,0.03);
+  --buttonBg: rgba(255,255,255,0.04);
+  --buttonHoverBg: rgba(255,255,255,0.06);
+  --buttonBorder: rgba(200,255,210,0.16);
+  --buttonHoverBorder: rgba(200,255,210,0.28);
+  --primaryBorder: rgba(122,217,138,0.40);
+  --primaryInset: rgba(122,217,138,0.16);
+}
+
+:root[data-theme="midnight"]{
+  --bg0:#020205;
+  --bg1:#111128;
+  --bg2: rgba(90,120,255,0.16);
+  --bg3: rgba(120,80,255,0.14);
+  --bg4: rgba(20,20,120,0.24);
+
+  --ink:#f2f3ff;
+  --muted:#bfc5f5;
+  --line:rgba(120,120,255,0.20);
+
+  --neonA:#9d96ff;
+  --neonB:#c08cff;
+  --neonC:#66d4ff;
+  --warn:#ffdd79;
+
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+  --inputBg: rgba(0,0,20,0.30);
+  --cardBg: rgba(6,6,24,0.22);
+  --stepBg: rgba(120,100,255,0.08);
+  --stepBorder: rgba(120,120,255,0.24);
+  --answerBg: rgba(255,221,121,0.08);
+  --answerBorder: rgba(255,221,121,0.22);
+  --plotBg: rgba(0,0,18,0.30);
+  --chipBg: rgba(255,255,255,0.03);
+  --buttonBg: rgba(255,255,255,0.04);
+  --buttonHoverBg: rgba(255,255,255,0.06);
+  --buttonBorder: rgba(210,210,255,0.16);
+  --buttonHoverBorder: rgba(210,210,255,0.28);
+  --primaryBorder: rgba(157,150,255,0.42);
+  --primaryInset: rgba(157,150,255,0.16);
+}
+
+:root[data-theme="paper"]{
+  --bg0:#ddd1bf;
+  --bg1:#f4efe6;
+  --bg2: rgba(85,125,168,0.10);
+  --bg3: rgba(143,93,53,0.08);
+  --bg4: rgba(120,80,40,0.08);
+
+  --ink:#2a2017;
+  --muted:#6f6258;
+  --line:rgba(100,80,60,0.14);
+
+  --neonA:#8f5d35;
+  --neonB:#a86f84;
+  --neonC:#557da8;
+  --warn:#9b6a15;
+
+  --panelBg: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
+  --inputBg: rgba(255,255,255,0.80);
+  --cardBg: rgba(255,255,255,0.72);
+  --stepBg: rgba(85,125,168,0.08);
+  --stepBorder: rgba(85,125,168,0.18);
+  --answerBg: rgba(155,106,21,0.08);
+  --answerBorder: rgba(155,106,21,0.18);
+  --plotBg: rgba(255,255,255,0.85);
+  --chipBg: rgba(255,255,255,0.75);
+  --buttonBg: rgba(0,0,0,0.04);
+  --buttonHoverBg: rgba(0,0,0,0.06);
+  --buttonBorder: rgba(0,0,0,0.12);
+  --buttonHoverBorder: rgba(0,0,0,0.20);
+  --primaryBorder: rgba(143,93,53,0.36);
+  --primaryInset: rgba(143,93,53,0.12);
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
   background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(90,120,255,0.35), transparent 60%),
-    radial-gradient(900px 500px at 110% 0%, rgba(255,120,220,0.20), transparent 55%),
-    radial-gradient(800px 700px at 20% 110%, rgba(70,255,200,0.16), transparent 55%),
+    radial-gradient(1200px 600px at 20% -10%, var(--bg4), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, var(--bg2), transparent 55%),
+    radial-gradient(800px 700px at 20% 110%, var(--bg3), transparent 55%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
   color:var(--ink);
   font-family:var(--font);
@@ -35,7 +221,7 @@ body{
 .header{
   border:1px solid var(--line);
   padding:14px 16px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background:var(--panelBg);
   clip-path: polygon(0 0, 98% 0, 100% 20%, 100% 100%, 2% 100%, 0 80%);
   margin-bottom:14px;
 }
@@ -44,12 +230,17 @@ h1{margin:0 0 6px;font-size:28px;letter-spacing:0.4px}
 
 .muted{color:var(--muted)}
 .right{text-align:right}
-code{font-family:var(--mono);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);padding:2px 6px}
+code{
+  font-family:var(--mono);
+  background:var(--chipBg);
+  border:1px solid var(--buttonBorder);
+  padding:2px 6px;
+}
 
 .controls{
   border:1px solid var(--line);
   padding:12px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background:var(--panelBg);
   clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
   display:flex;
   flex-wrap:wrap;
@@ -61,13 +252,13 @@ code{font-family:var(--mono);background:rgba(255,255,255,0.06);border:1px solid 
 .controls label{display:flex;flex-direction:column;font-size:13px;gap:6px;min-width:180px}
 .controls input,.controls select{
   color:var(--ink);
-  background:rgba(0,0,0,0.25);
-  border:1px solid rgba(255,255,255,0.16);
+  background:var(--inputBg);
+  border:1px solid var(--buttonBorder);
   outline:none;
   padding:10px 10px;
   clip-path: polygon(0 0, 94% 0, 100% 35%, 100% 100%, 6% 100%, 0 65%);
 }
-.controls input:focus,.controls select:focus{border-color:rgba(90,120,255,0.55)}
+.controls input:focus,.controls select:focus{border-color:var(--neonC)}
 
 .checkbox{
   min-width:300px;
@@ -75,34 +266,34 @@ code{font-family:var(--mono);background:rgba(255,255,255,0.06);border:1px solid 
   align-items:center;
   gap:10px!important;
   padding:10px;
-  border:1px dashed rgba(140,170,255,0.25);
+  border:1px dashed var(--line);
   color:var(--muted);
-  background:rgba(0,0,0,0.10);
+  background:var(--soft2);
   clip-path: polygon(0 0, 98% 0, 100% 30%, 100% 100%, 2% 100%, 0 70%);
 }
 .checkbox input{width:16px;height:16px}
 
 .buttons{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
 button{
-  border:1px solid rgba(255,255,255,0.16);
-  background:rgba(255,255,255,0.04);
+  border:1px solid var(--buttonBorder);
+  background:var(--buttonBg);
   color:var(--ink);
   padding:9px 12px;
   cursor:pointer;
   clip-path: polygon(0 0, 92% 0, 100% 40%, 100% 100%, 8% 100%, 0 60%);
 }
-button:hover{border-color:rgba(255,255,255,0.26);background:rgba(255,255,255,0.06)}
+button:hover{border-color:var(--buttonHoverBorder);background:var(--buttonHoverBg)}
 button:active{transform:translateY(1px)}
 button.ghost{background:rgba(255,255,255,0.02)}
 button.primary{
-  border-color:rgba(70,255,200,0.35);
-  box-shadow:0 0 0 1px rgba(70,255,200,0.15) inset;
+  border-color:var(--primaryBorder);
+  box-shadow:0 0 0 1px var(--primaryInset) inset;
 }
 
 .worksheet{
   border:1px solid var(--line);
   padding:14px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background:var(--panelBg);
   clip-path: polygon(0 0, 99% 0, 100% 10%, 100% 100%, 1% 100%, 0 90%);
   box-shadow:0 18px 40px rgba(0,0,0,0.35);
 }
@@ -118,11 +309,11 @@ button.primary{
 }
 .titleRow{display:flex;gap:10px;align-items:baseline}
 
-#problems .card, #answers .card{
-  border:1px solid rgba(255,255,255,0.14);
+#problems .card, #answers .card, .card{
+  border:1px solid var(--buttonBorder);
   padding:12px;
   margin-bottom:10px;
-  background:rgba(0,0,0,0.18);
+  background:var(--cardBg);
   clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
 }
 .qrow{display:flex;justify-content:space-between;gap:10px}
@@ -130,8 +321,8 @@ button.primary{
 
 .stepsbox{margin-top:10px}
 .step{
-  background:rgba(90,120,255,0.06);
-  border:1px solid rgba(90,120,255,0.22);
+  background:var(--stepBg);
+  border:1px solid var(--stepBorder);
   padding:8px 10px;
   margin-top:8px;
   font-size:13px;
@@ -139,8 +330,8 @@ button.primary{
 }
 
 .answer{
-  background:rgba(255,215,90,0.07);
-  border:1px solid rgba(255,215,90,0.22);
+  background:var(--answerBg);
+  border:1px solid var(--answerBorder);
 }
 .answer strong{color:var(--warn)}
 .hidden{display:none}
@@ -149,8 +340,8 @@ button.primary{
 canvas.plot{
   width:100%;
   height:220px;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(0,0,0,0.25);
+  border:1px solid var(--buttonBorder);
+  background:var(--plotBg);
   display:block;
   clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
 }
@@ -179,8 +370,8 @@ canvas.plot{
   display:flex;
   gap:8px;
   align-items:center;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(255,255,255,0.03);
+  border:1px solid var(--buttonBorder);
+  background:var(--chipBg);
   padding:7px 10px;
   font-size:12px;
   clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
@@ -189,18 +380,22 @@ canvas.plot{
 .chip input[type="number"]{
   width:80px;
   padding:6px 8px;
-  border:1px solid rgba(255,255,255,0.16);
-  background:rgba(0,0,0,0.22);
+  border:1px solid var(--buttonBorder);
+  background:var(--inputBg);
   color:var(--ink);
   clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
 }
 .chipBtn{
-  border:1px solid rgba(255,255,255,0.16);
-  background:rgba(255,255,255,0.04);
+  border:1px solid var(--buttonBorder);
+  background:var(--buttonBg);
   color:var(--ink);
   padding:7px 10px;
   cursor:pointer;
   clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
+}
+.chipBtn:hover{
+  border-color:var(--buttonHoverBorder);
+  background:var(--buttonHoverBg);
 }
 
 .answerKeyHeader{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0 8px}
@@ -209,13 +404,26 @@ canvas.plot{
 body.print-answers #answers{display:block}
 body.print-answers .answerKeyHeader{display:flex}
 
+.no-print {
+  display: block;
+}
+
 @media print{
-  body{background:#fff;color:#000}
+  body{background:#fff !important;color:#000 !important}
   .container{max-width:none;margin:0;padding:0}
-  .controls,.footer,#status{display:none!important}
-  .worksheet{border:none;box-shadow:none;clip-path:none;padding:0}
-  #problems .card, #answers .card{break-inside:avoid;background:#fff;color:#000;clip-path:none;border:1px solid #ddd}
+  .controls,.footer,#status,.no-print{display:none!important}
+  .worksheet{border:none;box-shadow:none;clip-path:none;padding:0;background:#fff !important}
+  #problems .card, #answers .card, .card{
+    break-inside:avoid;
+    page-break-inside:avoid;
+    background:#fff !important;
+    color:#000 !important;
+    clip-path:none;
+    border:1px solid #ddd !important;
+  }
   canvas.plot,.coordBar,.plotControls{display:none!important}
   body:not(.print-answers) #answers{display:none!important}
   body:not(.print-answers) .answerKeyHeader{display:none!important}
+  button,input,select{display:none!important}
+  #answers.hidden{display:none!important}
 }

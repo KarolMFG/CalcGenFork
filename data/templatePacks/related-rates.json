@@ -1,0 +1,7 @@
+{
+  "templates": [
+    { "name": "ladder", "notes": "Sliding ladder related-rates problem." },
+    { "name": "circle", "notes": "Changing area of a circle." },
+    { "name": "sphere", "notes": "Changing volume of a sphere." }
+  ]
+}

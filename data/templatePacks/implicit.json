@@ -1,0 +1,7 @@
+{
+  "templates": [
+    { "name": "circle", "notes": "Implicit differentiation of a circle relation." },
+    { "name": "product", "notes": "Implicit differentiation of xy = c." },
+    { "name": "cubic", "notes": "Implicit differentiation of x^3 + y^3 = c." }
+  ]
+}
