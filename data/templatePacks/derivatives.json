@@ -1,0 +1,6 @@
+{
+  "templates": [
+    { "name": "poly_power_rule", "notes": "Polynomial derivative using power rule; coefficients generated in code." },
+    { "name": "poly_power_rule_variant", "notes": "Same family; exists to demonstrate template packs." }
+  ]
+}

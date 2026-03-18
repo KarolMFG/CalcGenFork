@@ -1,0 +1,204 @@
+
+:root{
+  --bg0:#070816;
+  --bg1:#0b1020;
+  --ink:#e8f0ff;
+  --muted:#99a7c2;
+  --line:rgba(140,170,255,0.18);
+  --neonA:#46ffc8;
+  --neonB:#ff78dc;
+  --neonC:#5a78ff;
+  --warn:#ffd75a;
+
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(90,120,255,0.35), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, rgba(255,120,220,0.20), transparent 55%),
+    radial-gradient(800px 700px at 20% 110%, rgba(70,255,200,0.16), transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+  color:var(--ink);
+  font-family:var(--font);
+}
+
+.dim{color:var(--muted)}
+.mono{font-family:var(--mono)}
+.app{
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px 30px;
+}
+
+.topbar{
+  display:flex;
+  gap:18px;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:14px;
+  border:1px solid var(--line);
+  padding:14px 16px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  clip-path: polygon(0 0, 98% 0, 100% 20%, 100% 100%, 2% 100%, 0 80%);
+}
+
+.brand{display:flex;gap:12px;align-items:center}
+.brandMark{
+  width:16px;height:16px;
+  background:linear-gradient(135deg, var(--neonA), var(--neonB));
+  clip-path: polygon(50% 0, 100% 35%, 80% 100%, 20% 100%, 0 35%);
+  box-shadow: 0 0 18px rgba(70,255,200,0.35), 0 0 18px rgba(255,120,220,0.20);
+}
+.brandTitle{margin:0;font-size:22px;letter-spacing:0.4px}
+.brandSub{margin:4px 0 0;font-size:13px}
+
+.topbarMeta{font-size:12px;line-height:1.35}
+
+.main{display:grid;gap:14px}
+
+.panel{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  padding:14px 14px;
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.panelTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:10px;
+}
+.panelTitle{display:flex;gap:10px;align-items:center}
+.panelIndex{
+  font-family:var(--mono);
+  color:var(--warn);
+}
+.panelLabel{
+  font-weight:700;
+  letter-spacing:0.3px;
+}
+.panelHint{font-size:12px}
+
+.panelBtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(255,255,255,0.04);
+  color:var(--ink);
+  padding:8px 10px;
+  cursor:pointer;
+  clip-path: polygon(0 0, 92% 0, 100% 40%, 100% 100%, 8% 100%, 0 60%);
+}
+.btn:hover{
+  border-color:rgba(255,255,255,0.26);
+  background:rgba(255,255,255,0.06);
+}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:0.55;cursor:not-allowed}
+
+.btn--primary{
+  border-color:rgba(70,255,200,0.35);
+  box-shadow:0 0 0 1px rgba(70,255,200,0.15) inset;
+}
+.btn--alt{
+  border-color:rgba(255,120,220,0.28);
+  box-shadow:0 0 0 1px rgba(255,120,220,0.12) inset;
+}
+
+.panelBody{display:grid;gap:12px}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap:10px;
+}
+.field{display:grid;gap:6px}
+.fieldLabel{font-size:12px;color:var(--muted);font-family:var(--mono)}
+input,select{
+  width:100%;
+  padding:10px 10px;
+  color:var(--ink);
+  background:rgba(0,0,0,0.25);
+  border:1px solid rgba(255,255,255,0.16);
+  outline:none;
+  clip-path: polygon(0 0, 94% 0, 100% 35%, 100% 100%, 6% 100%, 0 65%);
+}
+input:focus,select:focus{
+  border-color:rgba(90,120,255,0.45);
+}
+
+.row{display:flex;gap:10px;flex-wrap:wrap}
+
+.stack{display:grid;gap:14px}
+
+.problemText{display:grid;gap:10px}
+.qLine{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.answerBlock{
+  border:1px solid rgba(255,215,90,0.28);
+  padding:10px;
+  background:rgba(255,215,90,0.06);
+  clip-path: polygon(0 0, 98% 0, 100% 22%, 100% 100%, 2% 100%, 0 78%);
+}
+.stepsBlock{
+  border:1px solid rgba(90,120,255,0.22);
+  padding:10px;
+  background:rgba(90,120,255,0.05);
+  clip-path: polygon(0 0, 98% 0, 100% 22%, 100% 100%, 2% 100%, 0 78%);
+}
+.stepsBlock ol{margin:6px 0 0 18px}
+.stepsBlock li{margin:6px 0}
+
+.plotPanel{
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(0,0,0,0.22);
+  padding:10px;
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+.plotHeader{display:grid;gap:6px;margin-bottom:8px}
+.plotTitle{font-weight:800;letter-spacing:0.3px}
+.plotMeta{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.plotCanvasWrap{
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(0,0,0,0.25);
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+.plotCanvas{
+  width:100%;
+  height:220px;
+  display:block;
+}
+.plotBar{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.plotReadout{display:flex;gap:12px;flex-wrap:wrap}
+.plotControls{display:flex;gap:10px;flex-wrap:wrap}
+.mini{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.mini input{min-width:160px}
+
+.footer{
+  margin-top:14px;
+  border:1px solid var(--line);
+  padding:10px 12px;
+  background:rgba(255,255,255,0.02);
+  clip-path: polygon(0 0, 98% 0, 100% 22%, 100% 100%, 2% 100%, 0 78%);
+}
+
+@media (max-width: 980px){
+  .grid{grid-template-columns: repeat(2, minmax(140px, 1fr));}
+}
+@media (max-width: 560px){
+  .grid{grid-template-columns: 1fr;}
+  .topbar{flex-direction:column}
+}

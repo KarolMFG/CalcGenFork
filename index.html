@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculus Problem Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.js"></script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <h1>Calculus Problem Generator</h1>
+        <p class="sub">Seeded, printable worksheets with steps, verification, exports, and interactive plotting.</p>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Controls">
+      <label>
+        Topic
+        <select id="topicSelect">
+          <!--<option value="slope">Slope-intercept graphing</option> -->
+          <option value="derivative">Derivatives</option>
+          <option value="limit">Limits</option>
+          <option value="integral">Definite integrals</option>
+          <option value="mixed">Mixed Bag</option>
+        </select>
+      </label>
+
+      <label>
+        Mode
+        <select id="modeSelect">
+          <option value="pack" selected>Template pack (JSON)</option>
+          <option value="ast">AST generator (recursive)</option>
+        </select>
+      </label>
+
+      <label>
+        Difficulty
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label>
+      <label>
+        Count
+        <input id="count" type="number" value="10" min="1" max="50" />
+      </label>
+
+      <label>
+        Seed (optional)
+        <input id="seed" type="number" placeholder="blank = random" />
+      </label>
+
+      <label class="checkbox">
+        <input id="useRemoteVerify" type="checkbox" />
+        Use optional API verify (mathjs.org)
+      </label>
+
+      <div class="buttons">
+        <button id="generateBtn">Generate</button>
+        <button id="toggleAnswers" class="ghost">Show Answers</button>
+        <button id="toggleSteps" class="ghost">Show Steps</button>
+        <button id="togglePrintAnswers" class="ghost">Print: Answers Off</button>
+        <button id="exportCSV">Export CSV</button>
+        <button id="exportJSON">Export JSON</button>
+        <button id="printBtn">Print / PDF</button>
+      </div>
+    </section>
+
+    <section class="worksheet">
+      <div class="worksheetHeader">
+        <div>
+          <div class="titleRow">
+            <strong id="worksheetTitle">Worksheet</strong>
+            <span class="muted" id="worksheetMeta"></span>
+          </div>
+        </div>
+        <div class="muted right" id="status"></div>
+      </div>
+
+      <div id="problems"></div>
+
+      <div class="answerKeyHeader">
+        <h3>Answer Key</h3>
+        <span class="muted">Toggle answers/steps for display and print.</span>
+      </div>
+      <div id="answers" class="hidden"></div>
+    </section>
+
+    <footer class="footer">
+      <small>Files: templates in <code>data/templatePacks</code> and code in <code>js/</code>.</small>
+    </footer>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "templates": [
+    { "name": "removable_discontinuity", "notes": "(x^2-a^2)/(x-a) removable; generated with parameter a." },
+    { "name": "polynomial_direct_sub", "notes": "Polynomial limit via direct substitution." }
+  ]
+}

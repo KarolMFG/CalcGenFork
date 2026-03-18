@@ -1,0 +1,221 @@
+:root{
+  --bg0:#b07a03;
+  --bg1:#744201;
+  --ink:#e8f0ff;
+  --muted:#9aa7c2;
+  --line:rgba(140,170,255,0.18);
+
+  --neonA:#46ffc8;
+  --neonB:#ff78dc;
+  --neonC:#5a78ff;
+  --warn:#ffd75a;
+
+  --soft: rgba(255,255,255,0.03);
+  --soft2: rgba(0,0,0,0.22);
+
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(90,120,255,0.35), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, rgba(255,120,220,0.20), transparent 55%),
+    radial-gradient(800px 700px at 20% 110%, rgba(70,255,200,0.16), transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+  color:var(--ink);
+  font-family:var(--font);
+  line-height:1.35;
+}
+
+.container{max-width:1100px;margin:24px auto;padding:0 16px 30px}
+
+.header{
+  border:1px solid var(--line);
+  padding:14px 16px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  clip-path: polygon(0 0, 98% 0, 100% 20%, 100% 100%, 2% 100%, 0 80%);
+  margin-bottom:14px;
+}
+h1{margin:0 0 6px;font-size:28px;letter-spacing:0.4px}
+.sub{margin:0;color:var(--muted)}
+
+.muted{color:var(--muted)}
+.right{text-align:right}
+code{font-family:var(--mono);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);padding:2px 6px}
+
+.controls{
+  border:1px solid var(--line);
+  padding:12px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 12px;
+  align-items:end;
+  margin-bottom:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.35);
+}
+.controls label{display:flex;flex-direction:column;font-size:13px;gap:6px;min-width:180px}
+.controls input,.controls select{
+  color:var(--ink);
+  background:rgba(0,0,0,0.25);
+  border:1px solid rgba(255,255,255,0.16);
+  outline:none;
+  padding:10px 10px;
+  clip-path: polygon(0 0, 94% 0, 100% 35%, 100% 100%, 6% 100%, 0 65%);
+}
+.controls input:focus,.controls select:focus{border-color:rgba(90,120,255,0.55)}
+
+.checkbox{
+  min-width:300px;
+  flex-direction:row!important;
+  align-items:center;
+  gap:10px!important;
+  padding:10px;
+  border:1px dashed rgba(140,170,255,0.25);
+  color:var(--muted);
+  background:rgba(0,0,0,0.10);
+  clip-path: polygon(0 0, 98% 0, 100% 30%, 100% 100%, 2% 100%, 0 70%);
+}
+.checkbox input{width:16px;height:16px}
+
+.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+button{
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(255,255,255,0.04);
+  color:var(--ink);
+  padding:9px 12px;
+  cursor:pointer;
+  clip-path: polygon(0 0, 92% 0, 100% 40%, 100% 100%, 8% 100%, 0 60%);
+}
+button:hover{border-color:rgba(255,255,255,0.26);background:rgba(255,255,255,0.06)}
+button:active{transform:translateY(1px)}
+button.ghost{background:rgba(255,255,255,0.02)}
+button.primary{
+  border-color:rgba(70,255,200,0.35);
+  box-shadow:0 0 0 1px rgba(70,255,200,0.15) inset;
+}
+
+.worksheet{
+  border:1px solid var(--line);
+  padding:14px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  clip-path: polygon(0 0, 99% 0, 100% 10%, 100% 100%, 1% 100%, 0 90%);
+  box-shadow:0 18px 40px rgba(0,0,0,0.35);
+}
+
+.worksheetHeader{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  border-bottom:1px solid rgba(255,255,255,0.10);
+  padding-bottom:10px;
+  margin-bottom:12px;
+}
+.titleRow{display:flex;gap:10px;align-items:baseline}
+
+#problems .card, #answers .card{
+  border:1px solid rgba(255,255,255,0.14);
+  padding:12px;
+  margin-bottom:10px;
+  background:rgba(0,0,0,0.18);
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+.qrow{display:flex;justify-content:space-between;gap:10px}
+.qmeta{color:var(--muted);font-size:12px}
+
+.stepsbox{margin-top:10px}
+.step{
+  background:rgba(90,120,255,0.06);
+  border:1px solid rgba(90,120,255,0.22);
+  padding:8px 10px;
+  margin-top:8px;
+  font-size:13px;
+  clip-path: polygon(0 0, 98% 0, 100% 22%, 100% 100%, 2% 100%, 0 78%);
+}
+
+.answer{
+  background:rgba(255,215,90,0.07);
+  border:1px solid rgba(255,215,90,0.22);
+}
+.answer strong{color:var(--warn)}
+.hidden{display:none}
+
+.plotWrap{margin-top:10px}
+canvas.plot{
+  width:100%;
+  height:220px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(0,0,0,0.25);
+  display:block;
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+
+.coordBar{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:8px;
+  flex-wrap:wrap;
+}
+.plotLeft{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.plotRight{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.tiny{font-size:11px}
+
+.plotControls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+  align-items:center;
+}
+.chip{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.03);
+  padding:7px 10px;
+  font-size:12px;
+  clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
+}
+.chip input[type="checkbox"]{width:16px;height:16px}
+.chip input[type="number"]{
+  width:80px;
+  padding:6px 8px;
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(0,0,0,0.22);
+  color:var(--ink);
+  clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
+}
+.chipBtn{
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(255,255,255,0.04);
+  color:var(--ink);
+  padding:7px 10px;
+  cursor:pointer;
+  clip-path: polygon(0 0, 92% 0, 100% 45%, 100% 100%, 8% 100%, 0 55%);
+}
+
+.answerKeyHeader{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0 8px}
+
+.footer{margin-top:12px;color:var(--muted)}
+body.print-answers #answers{display:block}
+body.print-answers .answerKeyHeader{display:flex}
+
+@media print{
+  body{background:#fff;color:#000}
+  .container{max-width:none;margin:0;padding:0}
+  .controls,.footer,#status{display:none!important}
+  .worksheet{border:none;box-shadow:none;clip-path:none;padding:0}
+  #problems .card, #answers .card{break-inside:avoid;background:#fff;color:#000;clip-path:none;border:1px solid #ddd}
+  canvas.plot,.coordBar,.plotControls{display:none!important}
+  body:not(.print-answers) #answers{display:none!important}
+  body:not(.print-answers) .answerKeyHeader{display:none!important}
+}

@@ -1,0 +1,3 @@
+[
+  {"id":1,"prompt":"Graph the line $y = 2x + 1$.","meta":{"type":"slope","m":2,"b":1,"expr":"2* x + 1"},"answer":{"slope":2,"intercept":1}}
+]

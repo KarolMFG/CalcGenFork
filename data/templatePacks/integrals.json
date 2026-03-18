@@ -1,0 +1,5 @@
+{
+  "templates": [
+    { "name": "poly_definite_0_b", "notes": "Definite integral from 0 to b of polynomial; antiderivative term rules." }
+  ]
+}
