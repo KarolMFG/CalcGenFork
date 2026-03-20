@@ -427,3 +427,34 @@ body.print-answers .answerKeyHeader{display:flex}
   button,input,select{display:none!important}
   #answers.hidden{display:none!important}
 }
+.analysisPanel {
+  margin-top: 10px;
+}
+
+.analysisCard {
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  padding: 10px;
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+
+.analysisGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.analysisBlock {
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.16);
+  padding: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  clip-path: polygon(0 0, 98% 0, 100% 18%, 100% 100%, 2% 100%, 0 82%);
+}
+
+.analysisBlock strong {
+  display: block;
+  margin-bottom: 4px;
+}

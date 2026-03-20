@@ -81,85 +81,109 @@ export function renderProblems(
     card.appendChild(qrow);
 
     if (item.plot && item.plot.expr) {
-      const wrap = document.createElement('div');
-      wrap.className = 'plotWrap';
+  const wrap = document.createElement('div');
+  wrap.className = 'plotWrap';
 
-      const canvas = document.createElement('canvas');
-      canvas.className = 'plot';
-      canvas.width = 900;
-      canvas.height = 220;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'plot';
+  canvas.width = 900;
+  canvas.height = 220;
 
-      const bar = document.createElement('div');
-      bar.className = 'coordBar';
+  const bar = document.createElement('div');
+  bar.className = 'coordBar';
 
-      const left = document.createElement('div');
-      left.className = 'plotLeft';
-      left.innerHTML = `
-        <span class="muted">Plot: <code>${escapeHtml(item.plot.expr)}</code></span>
-        <span class="muted tiny no-print">Shift+Click = set tangent point (x₀). Drag = pan. Wheel = zoom.</span>
-      `;
+  const left = document.createElement('div');
+  left.className = 'plotLeft';
+  left.innerHTML = `
+    <span class="muted">Plot: <code>${escapeHtml(item.plot.expr)}</code></span>
+    <span class="muted tiny no-print">Shift+Click = set tangent point (x₀). Drag = pan. Wheel = zoom.</span>
+  `;
 
-      const right = document.createElement('div');
-      right.className = 'plotRight';
+  const right = document.createElement('div');
+  right.className = 'plotRight';
 
-      const coords = document.createElement('span');
-      coords.id = `coords-${item.id}`;
-      coords.textContent = 'x: —   f(x): —';
+  const coords = document.createElement('span');
+  coords.id = `coords-${item.id}`;
+  coords.textContent = 'x: —   f(x): —';
 
-      const x0Readout = document.createElement('span');
-      x0Readout.className = 'muted';
-      x0Readout.textContent = 'x₀: —';
+  const x0Readout = document.createElement('span');
+  x0Readout.className = 'muted';
+  x0Readout.textContent = 'x₀: —';
 
-      right.appendChild(coords);
-      right.appendChild(x0Readout);
+  const hReadout = document.createElement('span');
+  hReadout.className = 'muted';
+  hReadout.textContent = 'h: 1';
 
-      bar.appendChild(left);
-      bar.appendChild(right);
+  right.appendChild(coords);
+  right.appendChild(x0Readout);
+  right.appendChild(hReadout);
 
-      const controls = document.createElement('div');
-      controls.className = 'plotControls no-print';
+  bar.appendChild(left);
+  bar.appendChild(right);
 
-      controls.innerHTML = `
-        <label class="chip"><input type="checkbox" class="der"> f′(x)</label>
-        <label class="chip"><input type="checkbox" class="tan" checked> tangent</label>
-        <label class="chip"><input type="checkbox" class="int"> ∫ shade</label>
-        <label class="chip">a <input class="ab" type="number" value="0" step="0.5"></label>
-        <label class="chip">b <input class="ab" type="number" value="2" step="0.5"></label>
-        <button class="chipBtn" type="button">Auto-Y</button>
-        <button class="chipBtn" type="button">Reset</button>
-        <span class="muted tiny derivExpr"></span>
-        <span class="muted tiny intReadout"></span>
-      `;
+  const controls = document.createElement('div');
+  controls.className = 'plotControls no-print';
 
-      wrap.appendChild(canvas);
-      wrap.appendChild(bar);
-      wrap.appendChild(controls);
-      card.appendChild(wrap);
+  controls.innerHTML = `
+    <label class="chip"><input type="checkbox" class="der"> f′(x)</label>
+    <label class="chip"><input type="checkbox" class="dder"> f′′(x)</label>
+    <label class="chip"><input type="checkbox" class="tan" checked> tangent</label>
+    <label class="chip"><input type="checkbox" class="sec"> secant</label>
+    <label class="chip">h <input class="hinput" type="number" value="1" step="0.1"></label>
+    <label class="chip"><input type="checkbox" class="int"> ∫ shade</label>
+    <label class="chip">a <input class="ab" type="number" value="0" step="0.5"></label>
+    <label class="chip">b <input class="ab" type="number" value="2" step="0.5"></label>
+    <button class="chipBtn" type="button">Auto-Y</button>
+    <button class="chipBtn" type="button">Reset</button>
+    <span class="muted tiny derivExpr"></span>
+    <span class="muted tiny secondDerivExpr"></span>
+    <span class="muted tiny intReadout"></span>
+  `;
 
-      const derivativeToggle = controls.querySelector('.der');
-      const tangentToggle = controls.querySelector('.tan');
-      const integralToggle = controls.querySelector('.int');
-      const aInput = controls.querySelectorAll('.ab')[0];
-      const bInput = controls.querySelectorAll('.ab')[1];
-      const autoYBtn = controls.querySelectorAll('.chipBtn')[0];
-      const resetViewBtn = controls.querySelectorAll('.chipBtn')[1];
-      const derivativeExprEl = controls.querySelector('.derivExpr');
-      const integralReadout = controls.querySelector('.intReadout');
+  const analysis = document.createElement('div');
+  analysis.className = 'analysisPanel';
+  analysis.innerHTML = `<div class="muted tiny">Analyzing…</div>`;
 
-      drawCalculusPlot(canvas, item.plot.expr, {
-        coordsEl: coords,
-        x0Readout,
-        derivativeToggle,
-        tangentToggle,
-        integralToggle,
-        aInput,
-        bInput,
-        autoYBtn,
-        resetViewBtn,
-        derivativeExprEl,
-        integralReadout,
-      });
-    }
+  wrap.appendChild(canvas);
+  wrap.appendChild(bar);
+  wrap.appendChild(controls);
+  wrap.appendChild(analysis);
+  card.appendChild(wrap);
+
+  const derivativeToggle = controls.querySelector('.der');
+  const secondDerivativeToggle = controls.querySelector('.dder');
+  const tangentToggle = controls.querySelector('.tan');
+  const secantToggle = controls.querySelector('.sec');
+  const hInput = controls.querySelector('.hinput');
+  const integralToggle = controls.querySelector('.int');
+  const aInput = controls.querySelectorAll('.ab')[0];
+  const bInput = controls.querySelectorAll('.ab')[1];
+  const autoYBtn = controls.querySelectorAll('.chipBtn')[0];
+  const resetViewBtn = controls.querySelectorAll('.chipBtn')[1];
+  const derivativeExprEl = controls.querySelector('.derivExpr');
+  const secondDerivativeExprEl = controls.querySelector('.secondDerivExpr');
+  const integralReadout = controls.querySelector('.intReadout');
+
+  drawCalculusPlot(canvas, item.plot.expr, {
+    coordsEl: coords,
+    x0Readout,
+    hReadout,
+    derivativeToggle,
+    secondDerivativeToggle,
+    tangentToggle,
+    secantToggle,
+    hInput,
+    integralToggle,
+    aInput,
+    bInput,
+    autoYBtn,
+    resetViewBtn,
+    derivativeExprEl,
+    secondDerivativeExprEl,
+    integralReadout,
+    analysisEl: analysis
+  });
+}
 
     if (item.stepsLatex && item.stepsLatex.length) {
       const stepsBox = document.createElement('div');
